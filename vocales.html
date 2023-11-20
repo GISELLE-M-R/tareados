@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+    <meta charset="UTF-8">
+    <title>tareados - Vocales </title>
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="comparacion.html">Comparacion</a></li>
+                <li><a href="palindromo.html">Palindromo</a></li>
+                <li><a href="vocales.html">Vocales</a></li>
+                <li><a href="ajax.html">Ajax</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Organizar y Mostrar Vocales</h1>
+        <form id="vowelsForm">
+            <label for="inputPhrase">Ingrese una frase:</label>
+            <input type="text" id="inputPhrase" required>
+            <br>
+            <button type="button" onclick="organizeAndShowVowels()">Mostrar Vocales</button>
+        </form>
+        <p id="result"></p>
+    </main>
+
+    
+</body>
+</html>

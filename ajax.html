@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio AJAX</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Establecer la URL actual en el cuadro de texto
+            $('#url').val(window.location.href);
+
+            $('#mostrarContenidos').click(function(){
+                var url = $('#url').val();
+                $.ajax({
+                    url: url,
+                    beforeSend: function() {
+                        $('#estado').text('Cargando...');
+                    },
+                    success: function(response, status, xhr) {
+                        $('#contenido').text(response);
+                        $('#cabeceras').text(xhr.getAllResponseHeaders());
+                        $('#codigoEstado').html(xhr.status + " " + xhr.statusText);
+                    },
+                    complete: function(xhr) {
+                        $('#estado').text('Completado');
+                    },
+                    error: function(xhr) {
+                        $('#contenido').text('Error al cargar el contenido');
+                        $('#cabeceras').text('');
+                        $('#codigoEstado').html(xhr.status + " " + xhr.statusText);
+                    }
+                });
+            });
+        });
+
+    </script>
+</head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="comparacion.html">Comparacion</a></li>
+            <li><a href="palindromo.html">Palindromo</a></li>
+            <li><a href="vocales.html">Vocales</a></li>
+            <li><a href="ajax.html">Ajax</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+    <h1>Ejercicio con AJAX</h1>
+    <input type="text" id="url" style="width: 100%;">
+    <button id="mostrarContenidos">Mostrar Contenidos</button>
+
+    <h2>Contenidos</h2>
+    <div id="contenido" style="border: 1px solid #000; min-height: 100px;"></div>
+
+    <h2>Estados de la petición</h2>
+    <div id="estado" style="border: 1px solid #000; min-height: 20px;">No inciada</div>
+
+    <h2>Cabeceras HTTP de la respuesta del servidor</h2>
+    <div id="cabeceras" style="border: 1px solid #000; min-height: 100px;"></div>
+
+    <h2>Código de estado</h2>
+    <div id="codigoEstado" style="border: 1px solid #000; min-height: 20px;"></div>
+</body>
+</html>
+
